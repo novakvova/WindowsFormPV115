@@ -42,15 +42,23 @@ namespace _14_CreateDialogWinForms
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnGen = new System.Windows.Forms.Button();
             this.btnDetails = new System.Windows.Forms.Button();
+            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.cbGender = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // btnShowLoginForm
             // 
-            this.btnShowLoginForm.Location = new System.Drawing.Point(598, 16);
-            this.btnShowLoginForm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnShowLoginForm.Location = new System.Drawing.Point(424, 398);
             this.btnShowLoginForm.Name = "btnShowLoginForm";
-            this.btnShowLoginForm.Size = new System.Drawing.Size(141, 84);
+            this.btnShowLoginForm.Size = new System.Drawing.Size(123, 63);
             this.btnShowLoginForm.TabIndex = 0;
             this.btnShowLoginForm.Text = "Відкрити форму для входу";
             this.btnShowLoginForm.UseVisualStyleBackColor = true;
@@ -58,10 +66,9 @@ namespace _14_CreateDialogWinForms
             // 
             // btnShowRegisterForm
             // 
-            this.btnShowRegisterForm.Location = new System.Drawing.Point(745, 16);
-            this.btnShowRegisterForm.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnShowRegisterForm.Location = new System.Drawing.Point(553, 398);
             this.btnShowRegisterForm.Name = "btnShowRegisterForm";
-            this.btnShowRegisterForm.Size = new System.Drawing.Size(141, 84);
+            this.btnShowRegisterForm.Size = new System.Drawing.Size(123, 63);
             this.btnShowRegisterForm.TabIndex = 1;
             this.btnShowRegisterForm.Text = "Реєструватися";
             this.btnShowRegisterForm.UseVisualStyleBackColor = true;
@@ -78,13 +85,12 @@ namespace _14_CreateDialogWinForms
             this.ColPhone,
             this.ColGender,
             this.ColImage});
-            this.dgvUsers.Location = new System.Drawing.Point(14, 127);
-            this.dgvUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvUsers.Location = new System.Drawing.Point(12, 110);
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
             this.dgvUsers.RowHeadersWidth = 51;
             this.dgvUsers.RowTemplate.Height = 50;
-            this.dgvUsers.Size = new System.Drawing.Size(874, 321);
+            this.dgvUsers.Size = new System.Drawing.Size(765, 282);
             this.dgvUsers.TabIndex = 2;
             // 
             // ColId
@@ -132,10 +138,9 @@ namespace _14_CreateDialogWinForms
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(14, 80);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnDelete.Location = new System.Drawing.Point(12, 398);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(99, 39);
+            this.btnDelete.Size = new System.Drawing.Size(87, 29);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Видалити";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -143,10 +148,9 @@ namespace _14_CreateDialogWinForms
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(120, 80);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnEdit.Location = new System.Drawing.Point(105, 398);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(99, 39);
+            this.btnEdit.Size = new System.Drawing.Size(87, 29);
             this.btnEdit.TabIndex = 4;
             this.btnEdit.Text = "Редагувати";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -154,29 +158,123 @@ namespace _14_CreateDialogWinForms
             // 
             // btnGen
             // 
-            this.btnGen.Location = new System.Drawing.Point(19, 458);
+            this.btnGen.Location = new System.Drawing.Point(12, 439);
+            this.btnGen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGen.Name = "btnGen";
-            this.btnGen.Size = new System.Drawing.Size(151, 29);
+            this.btnGen.Size = new System.Drawing.Size(132, 22);
             this.btnGen.TabIndex = 5;
-            this.btnGen.Text = "Генерація 1000";
+            this.btnGen.Text = "Генерація 100";
             this.btnGen.UseVisualStyleBackColor = true;
             this.btnGen.Click += new System.EventHandler(this.btnGen_Click);
             // 
             // btnDetails
             // 
-            this.btnDetails.Location = new System.Drawing.Point(792, 458);
+            this.btnDetails.Location = new System.Drawing.Point(688, 439);
+            this.btnDetails.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDetails.Name = "btnDetails";
-            this.btnDetails.Size = new System.Drawing.Size(94, 29);
+            this.btnDetails.Size = new System.Drawing.Size(82, 22);
             this.btnDetails.TabIndex = 6;
             this.btnDetails.Text = "Деталі";
             this.btnDetails.UseVisualStyleBackColor = true;
             this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
             // 
+            // txtLastName
+            // 
+            this.txtLastName.Location = new System.Drawing.Point(105, 9);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(124, 23);
+            this.txtLastName.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 21);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Прізвище";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(105, 38);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(124, 23);
+            this.txtName.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.Blue;
+            this.label2.Location = new System.Drawing.Point(12, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 21);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Ім\'я";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(674, 12);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(89, 33);
+            this.btnSearch.TabIndex = 9;
+            this.btnSearch.Text = "Пошук";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // cbGender
+            // 
+            this.cbGender.FormattingEnabled = true;
+            this.cbGender.Location = new System.Drawing.Point(252, 33);
+            this.cbGender.Name = "cbGender";
+            this.cbGender.Size = new System.Drawing.Size(158, 23);
+            this.cbGender.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.Blue;
+            this.label4.Location = new System.Drawing.Point(252, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 15);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Стать";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 83);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 15);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Усіх записів знайдено ";
+            // 
+            // lbCount
+            // 
+            this.lbCount.AutoSize = true;
+            this.lbCount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbCount.Location = new System.Drawing.Point(141, 78);
+            this.lbCount.Name = "lbCount";
+            this.lbCount.Size = new System.Drawing.Size(19, 21);
+            this.lbCount.TabIndex = 13;
+            this.lbCount.Text = "0";
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(902, 499);
+            this.ClientSize = new System.Drawing.Size(789, 489);
+            this.Controls.Add(this.lbCount);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cbGender);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.btnGen);
             this.Controls.Add(this.btnEdit);
@@ -184,13 +282,13 @@ namespace _14_CreateDialogWinForms
             this.Controls.Add(this.dgvUsers);
             this.Controls.Add(this.btnShowRegisterForm);
             this.Controls.Add(this.btnShowLoginForm);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Головна форма";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -208,5 +306,14 @@ namespace _14_CreateDialogWinForms
         private Button btnEdit;
         private Button btnGen;
         private Button btnDetails;
+        private TextBox txtLastName;
+        private Label label1;
+        private TextBox txtName;
+        private Label label2;
+        private Button btnSearch;
+        private ComboBox cbGender;
+        private Label label4;
+        private Label label3;
+        private Label lbCount;
     }
 }

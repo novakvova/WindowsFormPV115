@@ -1,4 +1,5 @@
 using _14_CreateDialogWinForms.Data;
+using _14_CreateDialogWinForms.Models;
 using Bogus;
 using System;
 using System.Drawing;
@@ -31,13 +32,31 @@ namespace _14_CreateDialogWinForms
         private void UpdateUsersList()
         {
             dgvUsers.Rows.Clear();
-            var users = _formData.Users.ToList();
+            var query = _formData.Users.AsQueryable();
+
+            if(!string.IsNullOrEmpty(txtLastName.Text))
+                query = query.Where(x => x.LastName.Contains(txtLastName.Text));
+
+            if (!string.IsNullOrEmpty(txtName.Text))
+                query = query.Where(x => x.FirstName.Contains(txtName.Text));
+
+            var select = cbGender.SelectedItem as MyComboBoxItem;
+            if (select.Id != -1)
+            {
+                var gender = (Gender)select.Id;
+                query = query.Where(x => x.Gender == gender);
+            }
+
+            var count = query.Count();
+            lbCount.Text = count.ToString();
+
+            var users = query.ToList();
             foreach (var user in users)
             {
                 using (MemoryStream ms = new MemoryStream())
                 {
                     ms.Write(File.ReadAllBytes($"images/50_{user.Image}"));
-                    object[] row = {user.Id, user.FirstName+" "+user.LastName, user.Phone,
+                    object[] row = {user.Id, user.LastName+" "+ user.FirstName, user.Phone,
                     user.Gender, Image.FromStream(ms) };
                     dgvUsers.Rows.Add(row);
                 }
@@ -46,8 +65,27 @@ namespace _14_CreateDialogWinForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            MyComboBoxItem novalue = new MyComboBoxItem();
+            novalue.Name = "Не вказано";
+            novalue.Id = -1;
+            cbGender.Items.Add(novalue);
+
+            MyComboBoxItem male = new MyComboBoxItem();
+            male.Name = "Чоловік";
+            male.Id = (int)Gender.Male;
+            cbGender.Items.Add(male);
+            MyComboBoxItem female = new MyComboBoxItem();
+            female.Name = "Жінка";
+            female.Id = (int)Gender.Female;
+            cbGender.Items.Add(female);
+            cbGender.SelectedIndex = 0;
+
+
             //MessageBox.Show("Hello app");
             UpdateUsersList();
+
+
+           
         }
 
         private void btnShowLoginForm_Click(object sender, EventArgs e)
@@ -134,7 +172,7 @@ namespace _14_CreateDialogWinForms
                 .RuleFor(u => u.Password, (f, u) => f.Internet.Password())
                 .RuleFor(u => u.Image, (f, u) => f.Image.LoremFlickrUrl());
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 100; i++)
             {
                 var user = testOrders.Generate();
                 using (WebClient client = new WebClient())
@@ -183,6 +221,11 @@ namespace _14_CreateDialogWinForms
 
                 }
             }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            UpdateUsersList();
         }
 
         //UserEntity user = new UserEntity
