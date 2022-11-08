@@ -16,6 +16,10 @@ namespace _14_CreateDialogWinForms
 {
     public partial class MainForm : Form
     {
+        int page=0;
+        int pageSize=100;
+        int totalCount =0;
+        int totalPages = 0;
         private readonly AppFormData _formData;
         public MainForm()
         {
@@ -48,8 +52,13 @@ namespace _14_CreateDialogWinForms
                 query = query.Where(x => x.Gender == gender);
             }
 
-            var count = query.Count();
-            lbCount.Text = count.ToString();
+            totalCount = query.Count();
+            totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+            lbCount.Text = totalCount.ToString();
+            int skip = page * pageSize;
+            query = query.OrderBy(x => x.Id)
+                .Skip(skip)
+                .Take(pageSize);
 
             var users = query.ToList();
             foreach (var user in users)
@@ -230,6 +239,17 @@ namespace _14_CreateDialogWinForms
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            page = 0;
+            UpdateUsersList();
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (page >= totalPages-1)
+                return;
+            page++;
+            //if(page==totalPages-1)
+            //    btnNext.Enabled = false;
             UpdateUsersList();
         }
 

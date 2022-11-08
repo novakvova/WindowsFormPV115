@@ -51,6 +51,7 @@ namespace _14_CreateDialogWinForms
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbCount = new System.Windows.Forms.Label();
+            this.btnNext = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -261,11 +262,22 @@ namespace _14_CreateDialogWinForms
             this.lbCount.TabIndex = 13;
             this.lbCount.Text = "0";
             // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(708, 68);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(65, 34);
+            this.btnNext.TabIndex = 14;
+            this.btnNext.Text = ">>";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(789, 489);
+            this.Controls.Add(this.btnNext);
             this.Controls.Add(this.lbCount);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbGender);
@@ -315,5 +327,6 @@ namespace _14_CreateDialogWinForms
         private Label label4;
         private Label label3;
         private Label lbCount;
+        private Button btnNext;
     }
 }
