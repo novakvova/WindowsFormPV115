@@ -1,0 +1,4 @@
+{
+  "ConnectionDB": "Data Source=myData.sqlite",
+  "ImageSizes": "50,150,300,600"
+}

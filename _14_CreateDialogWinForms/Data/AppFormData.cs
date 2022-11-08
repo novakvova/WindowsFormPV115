@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using _14_CreateDialogWinForms.Helpers;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace _14_CreateDialogWinForms.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=myData.sqlite");
+            optionsBuilder.UseSqlite(MyAppConfig.GetSectionValue("ConnectionDB"));
         }
 
     }

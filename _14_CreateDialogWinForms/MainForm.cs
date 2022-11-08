@@ -1,4 +1,5 @@
 using _14_CreateDialogWinForms.Data;
+using _14_CreateDialogWinForms.Helpers;
 using _14_CreateDialogWinForms.Models;
 using Bogus;
 using System;
@@ -116,7 +117,7 @@ namespace _14_CreateDialogWinForms
                     var id = int.Parse(dgvUsers.Rows[selectRowIndex].Cells[0].Value.ToString());
                     //MessageBox.Show(id.ToString());
                     var userDel = _formData.Users.SingleOrDefault(x => x.Id == id);
-                    string[] sizes = { "50", "150", "300", "600" };
+                    string[] sizes = MyAppConfig.GetSectionValue("ImageSizes").Split(',');
                     if (!string.IsNullOrEmpty(userDel.Image))
                     {
                         foreach (string size in sizes)
@@ -187,7 +188,7 @@ namespace _14_CreateDialogWinForms
                         Bitmap bitmap; 
                         bitmap = new Bitmap(stream);
                         string fileName = Path.GetRandomFileName() + ".jpg";
-                        string[] sizes = { "50", "150", "300", "600" };
+                        string[] sizes = MyAppConfig.GetSectionValue("ImageSizes").Split(',');
                         foreach (string size in sizes)
                         {
                             int width = int.Parse(size);
