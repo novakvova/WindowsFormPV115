@@ -116,9 +116,13 @@ namespace _14_CreateDialogWinForms
                     var id = int.Parse(dgvUsers.Rows[selectRowIndex].Cells[0].Value.ToString());
                     //MessageBox.Show(id.ToString());
                     var userDel = _formData.Users.SingleOrDefault(x => x.Id == id);
+                    string[] sizes = { "50", "150", "300", "600" };
                     if (!string.IsNullOrEmpty(userDel.Image))
                     {
-                        File.Delete($"images/{userDel.Image}");
+                        foreach (string size in sizes)
+                        {
+                            File.Delete($"images/{size}_{userDel.Image}");
+                        }
                     }
                     _formData.Users.Remove(userDel);
                     _formData.SaveChanges();

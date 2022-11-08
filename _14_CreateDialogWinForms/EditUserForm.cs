@@ -89,7 +89,7 @@ namespace _14_CreateDialogWinForms
         {
             using (MemoryStream ms = new MemoryStream())
             {
-                ms.Write(File.ReadAllBytes($"images/{initImageUser}"));
+                ms.Write(File.ReadAllBytes($"images/300_{initImageUser}"));
                 pbImage.Image = Image.FromStream(ms);
             }
         }
