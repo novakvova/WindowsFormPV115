@@ -14,14 +14,14 @@ using static System.Windows.Forms.DataFormats;
 
 namespace _14_CreateDialogWinForms
 {
-    public partial class MainForm : Form
+    public partial class UsersForm : Form
     {
         int page=0;
-        int pageSize=100;
+        int pageSize=10;
         int totalCount =0;
         int totalPages = 0;
         private readonly AppFormData _formData;
-        public MainForm()
+        public UsersForm()
         {
             InitializeComponent();
             try

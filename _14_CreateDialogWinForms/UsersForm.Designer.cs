@@ -2,7 +2,7 @@
 
 namespace _14_CreateDialogWinForms
 {
-    partial class MainForm
+    partial class UsersForm
     {
         /// <summary>
         ///  Required designer variable.

@@ -1,3 +1,4 @@
+using _14_CreateDialogWinForms.Services;
 using System;
 using System.Windows.Forms;
 
@@ -16,7 +17,8 @@ namespace _14_CreateDialogWinForms
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            SeedData.Init();
+            Application.Run(new HomeForm());
             //Application.Run(new LoginForm());
         }
     }

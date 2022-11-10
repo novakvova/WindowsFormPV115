@@ -11,6 +11,7 @@ namespace _14_CreateDialogWinForms.Data
     public class AppFormData : DbContext
     {
         public DbSet<UserEntity> Users { get; set; }
+        public DbSet<CategoryEntity> Categories { get; set; }
         public AppFormData()
         {
             this.Database.EnsureCreated(); //Автоматично створити БД
