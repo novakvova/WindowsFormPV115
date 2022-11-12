@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace _14_CreateDialogWinForms.Services
 {
@@ -55,8 +56,43 @@ namespace _14_CreateDialogWinForms.Services
                     formData.SaveChanges();
                 }
             }
-        
-        
+
+            if (!formData.Categories.Any())
+            {
+                var list = new List<CategoryEntity>()
+                {
+                    new CategoryEntity { Image="laptop", Name="Ноутбуки", Proirity=1 },
+                    new CategoryEntity { Image="officesupplies", Name="Канцелярія", Proirity=2 },
+                    new CategoryEntity { Image="householdgoods", Name="Побутові товари", Proirity=3 },
+                    new CategoryEntity { Image="auto", Name="Авто запчастини", Proirity=4 },
+                    new CategoryEntity { Image="bureau", Name="Дівчачі дрібнички", Proirity=5 }
+                };
+
+                foreach (var category in list)
+                {
+                    string url = $"https://loremflickr.com/1280/960/{category.Image}";
+                    using (WebClient client = new WebClient())
+                    {
+                        using (Stream stream = client.OpenRead(url))
+                        {
+                            Bitmap bitmap;
+                            bitmap = new Bitmap(stream);
+                            string fileName = Path.GetRandomFileName() + ".jpg";
+                            string[] sizes = MyAppConfig.GetSectionValue("ImageSizes").Split(',');
+                            foreach (string size in sizes)
+                            {
+                                int width = int.Parse(size);
+                                var saveBMP = ImageWorker.CompressImage(bitmap, width, width, false);
+                                saveBMP.Save($"images/{size}_{fileName}", ImageFormat.Jpeg);
+                            }
+                            category.Image = fileName;
+                        }
+                    }
+                    formData.Add(category);
+                    formData.SaveChanges();
+                }
+                
+            }
         }
     }
 }

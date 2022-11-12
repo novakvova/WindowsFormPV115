@@ -37,6 +37,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.HomePanelStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripUsers = new System.Windows.Forms.ToolStripButton();
+            this.lvCategories = new System.Windows.Forms.ListView();
             this.headMenu.SuspendLayout();
             this.HomePanelStrip.SuspendLayout();
             this.SuspendLayout();
@@ -112,11 +113,21 @@
             this.toolStripUsers.Text = "toolStripButton1";
             this.toolStripUsers.Click += new System.EventHandler(this.menuDataUsers_Click);
             // 
+            // lvCategories
+            // 
+            this.lvCategories.HideSelection = false;
+            this.lvCategories.Location = new System.Drawing.Point(0, 52);
+            this.lvCategories.Name = "lvCategories";
+            this.lvCategories.Size = new System.Drawing.Size(800, 307);
+            this.lvCategories.TabIndex = 3;
+            this.lvCategories.UseCompatibleStateImageBehavior = false;
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lvCategories);
             this.Controls.Add(this.HomePanelStrip);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.headMenu);
@@ -125,6 +136,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "HomeForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HomeForm_FormClosing);
+            this.Load += new System.EventHandler(this.HomeForm_Load);
             this.headMenu.ResumeLayout(false);
             this.headMenu.PerformLayout();
             this.HomePanelStrip.ResumeLayout(false);
@@ -144,5 +156,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStrip HomePanelStrip;
         private System.Windows.Forms.ToolStripButton toolStripUsers;
+        private System.Windows.Forms.ListView lvCategories;
     }
 }
