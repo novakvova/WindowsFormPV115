@@ -25,6 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Categories\EditCategoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="EditUserForm.cs">
       <SubType>Form</SubType>
     </Compile>

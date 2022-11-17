@@ -71,7 +71,9 @@ namespace _14_CreateDialogWinForms
             lvCategories.Clear();
             lvCategories.LargeImageList = new ImageList();
             lvCategories.LargeImageList.ImageSize = new Size(100, 75);
-            foreach(var c in _formData.Categories.ToList())
+            foreach(var c in _formData.Categories
+                .OrderBy(c => c.Proirity)
+                .ToList())
             {
                 string id = "0";
                 string image = "no_image.jpg";
@@ -85,7 +87,7 @@ namespace _14_CreateDialogWinForms
                     ms.Write(File.ReadAllBytes($"images/150_{c.Image}"));
                     lvCategories.LargeImageList.Images.Add(id, Image.FromStream(ms));
                     ListViewItem item = new ListViewItem();
-                    item.Text = c.Name;
+                    item.Text = c.Name+"\r\n"+c.Proirity;
                     item.Tag = c;
                     item.ImageKey= id;
                     lvCategories.Items.Add(item);
@@ -125,6 +127,22 @@ namespace _14_CreateDialogWinForms
                     _formData.Categories.Remove(delete);
                     _formData.SaveChanges();
                     lvCategories.Items.Remove(item);
+                }
+            }
+        }
+
+        private void btnEditCategory_Click(object sender, EventArgs e)
+        {
+            var selectCategories = lvCategories.SelectedItems;
+            if (selectCategories.Count > 0)
+            {
+                var item = selectCategories[0];
+                var category = (CategoryEntity)item.Tag;
+                EditCategoryForm dlg = new EditCategoryForm(_formData);
+                dlg.CategoryID = category.Id;
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    LoadDataCategories();
                 }
             }
         }

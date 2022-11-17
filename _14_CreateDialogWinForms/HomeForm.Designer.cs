@@ -40,6 +40,7 @@
             this.lvCategories = new System.Windows.Forms.ListView();
             this.btnAddCategory = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEditCategory = new System.Windows.Forms.Button();
             this.headMenu.SuspendLayout();
             this.HomePanelStrip.SuspendLayout();
             this.SuspendLayout();
@@ -144,12 +145,23 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // btnEditCategory
+            // 
+            this.btnEditCategory.Location = new System.Drawing.Point(297, 383);
+            this.btnEditCategory.Name = "btnEditCategory";
+            this.btnEditCategory.Size = new System.Drawing.Size(132, 42);
+            this.btnEditCategory.TabIndex = 4;
+            this.btnEditCategory.Text = "Змінити категорію";
+            this.btnEditCategory.UseVisualStyleBackColor = true;
+            this.btnEditCategory.Click += new System.EventHandler(this.btnEditCategory_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnEditCategory);
             this.Controls.Add(this.btnAddCategory);
             this.Controls.Add(this.lvCategories);
             this.Controls.Add(this.HomePanelStrip);
@@ -183,5 +195,6 @@
         private System.Windows.Forms.ListView lvCategories;
         private System.Windows.Forms.Button btnAddCategory;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnEditCategory;
     }
 }
