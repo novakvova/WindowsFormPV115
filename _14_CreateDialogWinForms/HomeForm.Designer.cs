@@ -38,6 +38,8 @@
             this.HomePanelStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripUsers = new System.Windows.Forms.ToolStripButton();
             this.lvCategories = new System.Windows.Forms.ListView();
+            this.btnAddCategory = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.headMenu.SuspendLayout();
             this.HomePanelStrip.SuspendLayout();
             this.SuspendLayout();
@@ -122,11 +124,33 @@
             this.lvCategories.TabIndex = 3;
             this.lvCategories.UseCompatibleStateImageBehavior = false;
             // 
+            // btnAddCategory
+            // 
+            this.btnAddCategory.Location = new System.Drawing.Point(12, 383);
+            this.btnAddCategory.Name = "btnAddCategory";
+            this.btnAddCategory.Size = new System.Drawing.Size(132, 42);
+            this.btnAddCategory.TabIndex = 4;
+            this.btnAddCategory.Text = "Додати категорію";
+            this.btnAddCategory.UseVisualStyleBackColor = true;
+            this.btnAddCategory.Click += new System.EventHandler(this.btnAddCategory_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(150, 383);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(141, 42);
+            this.btnDelete.TabIndex = 5;
+            this.btnDelete.Text = "Видалити";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnAddCategory);
             this.Controls.Add(this.lvCategories);
             this.Controls.Add(this.HomePanelStrip);
             this.Controls.Add(this.statusStrip1);
@@ -157,5 +181,7 @@
         private System.Windows.Forms.ToolStrip HomePanelStrip;
         private System.Windows.Forms.ToolStripButton toolStripUsers;
         private System.Windows.Forms.ListView lvCategories;
+        private System.Windows.Forms.Button btnAddCategory;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

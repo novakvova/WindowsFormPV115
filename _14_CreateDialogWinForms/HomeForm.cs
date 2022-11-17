@@ -1,4 +1,6 @@
-﻿using _14_CreateDialogWinForms.Data;
+﻿using _14_CreateDialogWinForms.Categories;
+using _14_CreateDialogWinForms.Data;
+using _14_CreateDialogWinForms.Helpers;
 using Bogus;
 using Bogus.DataSets;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -7,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -88,6 +91,41 @@ namespace _14_CreateDialogWinForms
                     lvCategories.Items.Add(item);
                 }
 
+            }
+        }
+
+        private void btnAddCategory_Click(object sender, EventArgs e)
+        {
+            CreateCategoryForm dlg = new CreateCategoryForm();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                LoadDataCategories();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var selectCategories = lvCategories.SelectedItems;
+            if(selectCategories.Count > 0 )
+            {
+                var item = selectCategories[0];
+                var catetory = (CategoryEntity)item.Tag;
+                // MessageBox.Show("Category = "+ catetory.Id);
+                var delete = _formData.Categories.SingleOrDefault(x=>x.Id==catetory.Id);
+                if(delete != null)
+                {
+                    string fileName = delete.Image;
+                    string[] sizes = MyAppConfig.GetSectionValue("ImageSizes").Split(',');
+                    foreach (string size in sizes)
+                    {
+                        string deleFile = $"images/{size}_{fileName}";
+                        if (File.Exists(deleFile))
+                            File.Delete(deleFile);
+                    }
+                    _formData.Categories.Remove(delete);
+                    _formData.SaveChanges();
+                    lvCategories.Items.Remove(item);
+                }
             }
         }
     }
