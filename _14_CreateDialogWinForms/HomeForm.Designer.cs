@@ -41,6 +41,7 @@
             this.btnAddCategory = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEditCategory = new System.Windows.Forms.Button();
+            this.addProductToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.headMenu.SuspendLayout();
             this.HomePanelStrip.SuspendLayout();
             this.SuspendLayout();
@@ -75,7 +76,8 @@
             // menuData
             // 
             this.menuData.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuDataUsers});
+            this.menuDataUsers,
+            this.addProductToolStripMenuItem});
             this.menuData.Name = "menuData";
             this.menuData.Size = new System.Drawing.Size(43, 20);
             this.menuData.Text = "Дані";
@@ -84,7 +86,7 @@
             // 
             this.menuDataUsers.Name = "menuDataUsers";
             this.menuDataUsers.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
-            this.menuDataUsers.Size = new System.Drawing.Size(144, 22);
+            this.menuDataUsers.Size = new System.Drawing.Size(180, 22);
             this.menuDataUsers.Text = "Users";
             this.menuDataUsers.Click += new System.EventHandler(this.menuDataUsers_Click);
             // 
@@ -155,6 +157,13 @@
             this.btnEditCategory.UseVisualStyleBackColor = true;
             this.btnEditCategory.Click += new System.EventHandler(this.btnEditCategory_Click);
             // 
+            // addProductToolStripMenuItem
+            // 
+            this.addProductToolStripMenuItem.Name = "addProductToolStripMenuItem";
+            this.addProductToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addProductToolStripMenuItem.Text = "Додати продукт";
+            this.addProductToolStripMenuItem.Click += new System.EventHandler(this.addProductToolStripMenuItem_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -196,5 +205,6 @@
         private System.Windows.Forms.Button btnAddCategory;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEditCategory;
+        private System.Windows.Forms.ToolStripMenuItem addProductToolStripMenuItem;
     }
 }

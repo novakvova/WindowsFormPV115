@@ -1,6 +1,7 @@
 ﻿using _14_CreateDialogWinForms.Categories;
 using _14_CreateDialogWinForms.Data;
 using _14_CreateDialogWinForms.Helpers;
+using _14_CreateDialogWinForms.Products;
 using Bogus;
 using Bogus.DataSets;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -145,6 +146,12 @@ namespace _14_CreateDialogWinForms
                     LoadDataCategories();
                 }
             }
+        }
+
+        private void addProductToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateProductForm dlg = new CreateProductForm();
+            dlg.ShowDialog();
         }
     }
 }
