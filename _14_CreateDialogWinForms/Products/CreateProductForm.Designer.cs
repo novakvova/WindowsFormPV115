@@ -63,6 +63,11 @@ namespace _14_CreateDialogWinForms.Products
             this.lvImages.Size = new System.Drawing.Size(623, 174);
             this.lvImages.TabIndex = 1;
             this.lvImages.UseCompatibleStateImageBehavior = false;
+            this.lvImages.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvImages_ItemDrag);
+            this.lvImages.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvImages_DragDrop);
+            this.lvImages.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvImages_DragEnter);
+            this.lvImages.DragOver += new System.Windows.Forms.DragEventHandler(this.lvImages_DragOver);
+            this.lvImages.DragLeave += new System.EventHandler(this.lvImages_DragLeave);
             // 
             // groupBox1
             // 
