@@ -93,6 +93,47 @@ namespace _14_CreateDialogWinForms.Services
                 }
                 
             }
+
+
+            if (!formData.Products.Any())
+            {
+                var product = new ProductEntity
+                {
+                    Name = "Dell Lattitude 9151",
+                    Description = "Дешево і сердито",
+                    Price = 35251.45M
+                };
+              
+
+                string images = "";
+                for (int i = 0; i < 4; i++)
+                {
+                    string url = $"https://loremflickr.com/1280/960/laptop";
+                    using (WebClient client = new WebClient())
+                    {
+                        using (Stream stream = client.OpenRead(url))
+                        {
+                            Bitmap bitmap;
+                            bitmap = new Bitmap(stream);
+                            string fileName = Path.GetRandomFileName() + ".jpg";
+                            string[] sizes = MyAppConfig.GetSectionValue("ImageSizes").Split(',');
+                            foreach (string size in sizes)
+                            {
+                                int width = int.Parse(size);
+                                var saveBMP = ImageWorker.CompressImage(bitmap, width, width, false);
+                                saveBMP.Save($"images/{size}_{fileName}", ImageFormat.Jpeg);
+                            }
+
+                            images += fileName + (i == 3 ? "" : " ");
+                        }
+                    }
+                
+                }
+                product.Images = images;
+                formData.Products.Add(product);
+                formData.SaveChanges();
+
+            }
         }
     }
 }

@@ -21,6 +21,5 @@ namespace _14_CreateDialogWinForms.Data
         {
             optionsBuilder.UseSqlite(MyAppConfig.GetSectionValue("ConnectionDB"));
         }
-
     }
 }
