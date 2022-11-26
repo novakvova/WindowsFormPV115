@@ -185,5 +185,11 @@ namespace _14_CreateDialogWinForms
                 _formData.SaveChanges();
             }
         }
+
+        private void productsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowProductsForm dlg = new ShowProductsForm();
+            dlg.ShowDialog();
+        }
     }
 }
