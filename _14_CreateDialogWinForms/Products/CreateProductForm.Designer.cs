@@ -156,6 +156,7 @@ namespace _14_CreateDialogWinForms.Products
             this.btnAddProduct.TabIndex = 5;
             this.btnAddProduct.Text = "Додати товар";
             this.btnAddProduct.UseVisualStyleBackColor = true;
+            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
             // CreateProductForm
             // 

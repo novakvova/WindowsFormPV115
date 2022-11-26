@@ -13,6 +13,10 @@ namespace _14_CreateDialogWinForms.Products
 {
     public partial class CreateProductForm : Form
     {
+        public string ProductName { get; set; }
+        public string ProductPrice { get; set; }
+        public string ProductDescription { get; set; }
+        public List<string> ProductImages { get; set; }
         private class ListViewIndexComparer : System.Collections.IComparer
         {
             public int Compare(object x, object y)
@@ -126,6 +130,19 @@ namespace _14_CreateDialogWinForms.Products
 
             // Remove the original copy of the dragged item.
             lvImages.Items.Remove(draggedItem);
+        }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            ProductName = txtName.Text;
+            ProductDescription= txtDescription.Text;
+            ProductPrice= txtPrice.Text;
+            ProductImages = new List<string>();
+            foreach (ListViewItem item in lvImages.Items)
+            {
+                ProductImages.Add((string)item.Tag);
+            }
+            this.DialogResult=DialogResult.OK;
         }
     }
 }

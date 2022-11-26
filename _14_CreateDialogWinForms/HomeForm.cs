@@ -13,9 +13,11 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
 
 namespace _14_CreateDialogWinForms
 {
@@ -151,7 +153,37 @@ namespace _14_CreateDialogWinForms
         private void addProductToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateProductForm dlg = new CreateProductForm();
-            dlg.ShowDialog();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                var product = new ProductEntity
+                {
+                    Name = dlg.ProductName,
+                    Description = dlg.ProductDescription,
+                    Price = decimal.Parse(dlg.ProductPrice),
+                };
+                string images = "";
+                int count = dlg.ProductImages.Count;
+                int i = 1;
+                foreach (var image in dlg.ProductImages)
+                {
+                    var img = Image.FromFile(image);
+                    Bitmap bitmap;
+                    bitmap = new Bitmap(img);
+                    string fileName = Path.GetRandomFileName() + ".jpg";
+                    string[] sizes = MyAppConfig.GetSectionValue("ImageSizes").Split(',');
+                    foreach (string size in sizes)
+                    {
+                        int width = int.Parse(size);
+                        var saveBMP = ImageWorker.CompressImage(bitmap, width, width, false);
+                        saveBMP.Save($"images/{size}_{fileName}", ImageFormat.Jpeg);
+                    }
+                    images += fileName + (i == count ? "" : " ");
+                    i++;
+                }
+                product.Images = images;
+                _formData.Products.Add(product);
+                _formData.SaveChanges();
+            }
         }
     }
 }
