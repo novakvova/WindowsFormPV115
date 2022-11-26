@@ -41,6 +41,7 @@ namespace _14_CreateDialogWinForms.Products
             this.label4 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.btnAddProduct = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +72,7 @@ namespace _14_CreateDialogWinForms.Products
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.btnAddImage);
             this.groupBox1.Controls.Add(this.lvImages);
             this.groupBox1.Location = new System.Drawing.Point(12, 213);
@@ -158,6 +160,16 @@ namespace _14_CreateDialogWinForms.Products
             this.btnAddProduct.UseVisualStyleBackColor = true;
             this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(651, 147);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(82, 32);
+            this.btnDelete.TabIndex = 3;
+            this.btnDelete.Text = "Видалить";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // EditProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -175,6 +187,7 @@ namespace _14_CreateDialogWinForms.Products
             this.Name = "EditProductForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Додати продукт";
+            this.Load += new System.EventHandler(this.EditProductForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -194,5 +207,6 @@ namespace _14_CreateDialogWinForms.Products
         private Label label4;
         private TextBox txtDescription;
         private Button btnAddProduct;
+        private Button btnDelete;
     }
 }

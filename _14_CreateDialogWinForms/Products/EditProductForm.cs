@@ -35,28 +35,30 @@ namespace _14_CreateDialogWinForms.Products
             }
         }
 
-        public string [] SetListViewItemImages
-        {
-            set
-            {
-                foreach (var pImg in value)
-                {
-                    string key = Guid.NewGuid().ToString();
-                    ListViewItem item = new ListViewItem();
-                    item.Tag = pImg;
-                    item.Text = Path.GetFileName(pImg);
-                    item.ImageKey = key;
-                    lvImages.LargeImageList.Images.Add(key, Image.FromFile($"images/150_{pImg}"));
-                    lvImages.Items.Add(item);
-                }
-            }
-        }
+        //public string [] SetListViewItemImages
+        //{
+        //    set
+        //    {
+        //        foreach (var pImg in value)
+        //        {
+        //            string key = Guid.NewGuid().ToString();
+        //            ListViewItem item = new ListViewItem();
+        //            item.Tag = pImg;
+        //            item.Text = Path.GetFileName(pImg);
+        //            item.ImageKey = key;
+        //            lvImages.LargeImageList.Images.Add(key, Image.FromFile($"images/150_{pImg}"));
+        //            lvImages.Items.Add(item);
+        //        }
+        //    }
+        //}
 
 
         public string ProductName { get; set; }
         public string ProductPrice { get; set; }
         public string ProductDescription { get; set; }
-        public List<string> ProductImages { get; set; }
+        public List<ImageItemListView> Product_Images { get; set; } = new List<ImageItemListView>();
+        public List<ImageItemListView> RemoveFiles { get; set; } = new List<ImageItemListView>();
+
         private class ListViewIndexComparer : System.Collections.IComparer
         {
             public int Compare(object x, object y)
@@ -81,16 +83,21 @@ namespace _14_CreateDialogWinForms.Products
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.tif;...";
-            if(dlg.ShowDialog() == DialogResult.OK)
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
                 string key = Guid.NewGuid().ToString();
-                ListViewItem item= new ListViewItem();
-                item.Tag = dlg.FileName;
+                ListViewItem item = new ListViewItem();
+                item.Tag = new ImageItemListView
+                {
+                    Id = 0,
+                    Name = dlg.FileName
+                };
                 item.Text = Path.GetFileName(dlg.FileName);
                 item.ImageKey = key;
                 lvImages.LargeImageList.Images.Add(key, Image.FromFile(dlg.FileName));
                 lvImages.Items.Add(item);
 
+                //MessageBox.Show("Select image " + dlg.FileName);
             }
         }
 
@@ -178,12 +185,44 @@ namespace _14_CreateDialogWinForms.Products
             ProductName = txtName.Text;
             ProductDescription= txtDescription.Text;
             ProductPrice= txtPrice.Text;
-            ProductImages = new List<string>();
+            Product_Images.Clear();
             foreach (ListViewItem item in lvImages.Items)
             {
-                ProductImages.Add((string)item.Tag);
+                Product_Images.Add((ImageItemListView)item.Tag);
             }
             this.DialogResult=DialogResult.OK;
+        }
+
+        private void EditProductForm_Load(object sender, EventArgs e)
+        {
+            foreach (var image in Product_Images)
+            {
+                string key = image.Name;
+                ListViewItem item = new ListViewItem();
+                item.Tag = image;
+                item.Text = Path.GetFileName($"{image.Name}");
+                item.ImageKey = key;
+                MemoryStream ms = new MemoryStream();
+                using (FileStream file = new FileStream($"images/150_{image.Name}", FileMode.Open, FileAccess.Read))
+                    file.CopyTo(ms);
+                lvImages.LargeImageList.Images.Add(key, Image.FromStream(ms));
+                lvImages.Items.Add(item);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var listSelect = lvImages.SelectedItems;
+            if (listSelect.Count > 0)
+            {
+                var item = listSelect[0];
+                var pImage = (ImageItemListView)item.Tag;
+                if (pImage.Id > 0)
+                {
+                    RemoveFiles.Add(pImage);
+                }
+                lvImages.Items.Remove(item);
+            }
         }
     }
 }

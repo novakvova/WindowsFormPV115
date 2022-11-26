@@ -5,7 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -105,9 +107,73 @@ namespace _14_CreateDialogWinForms.Products
                     dlg.SetTxtName=editProduct.Name;
                     dlg.SetTxtDescription=editProduct.Description;
                     dlg.SetTxtPrice=editProduct.Price.ToString();
-                    dlg.SetListViewItemImages = editProduct.Images.Split(' ');                   
+                    //dlg.SetListViewItemImages = editProduct.Images.Split(' ');                   
+                    dlg.Product_Images = new List<ImageItemListView>();
+                    int id = 1;
+                    foreach (var image in editProduct.Images.Split(' '))
+                    {
+                        dlg.Product_Images.Add(new ImageItemListView
+                        {
+                            Id = id,
+                            Name = image
+                        });
+                        id++;
+                    }
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        foreach (var pImgDel in dlg.RemoveFiles)
+                        {
+                            string name = pImgDel.Name;
+                            string[] sizes = MyAppConfig.GetSectionValue("ImageSizes").Split(',');
+                            foreach (string size in sizes)
+                            {
+                                string deleFile = $"images/{size}_{name}";
+                                if (File.Exists(deleFile))
+                                    File.Delete(deleFile);
+                            }
+                        }
+                        var editProd = _formData.Products.SingleOrDefault(x => x.Id == product.Id);
+                        if (editProd != null)
+                        {
+                            editProd.Name = dlg.ProductName;
+                            editProd.Description = dlg.ProductDescription;
+                            editProd.Price = decimal.Parse(dlg.ProductPrice);
 
-                    dlg.ShowDialog();
+                            string images = "";
+                            int count = dlg.Product_Images.Count;
+                            int i = 1;
+                            foreach (var image in dlg.Product_Images)
+                            {
+                                if(image.Id == 0)
+                                {
+                                    var img = Image.FromFile(image.Name);
+                                    Bitmap bitmap;
+                                    bitmap = new Bitmap(img);
+                                    string fileName = Path.GetRandomFileName() + ".jpg";
+                                    string[] sizes = MyAppConfig.GetSectionValue("ImageSizes").Split(',');
+                                    foreach (string size in sizes)
+                                    {
+                                        int width = int.Parse(size);
+                                        var saveBMP = ImageWorker.CompressImage(bitmap, width, width, false);
+                                        saveBMP.Save($"images/{size}_{fileName}", ImageFormat.Jpeg);
+                                    }
+                                    images += fileName + (i == count ? "" : " ");
+                                    
+                                }
+                                else
+                                {
+                                    images += image.Name + (i == count ? "" : " ");
+                                }
+                                i++;
+
+                            }
+                            product.Images = images;
+                            _formData.Update(product);
+                            _formData.SaveChanges();
+                        }
+
+
+                    }
                 }
             }
 
