@@ -2,6 +2,7 @@
 using _14_CreateDialogWinForms.Data;
 using _14_CreateDialogWinForms.Helpers;
 using _14_CreateDialogWinForms.Products;
+using _14_CreateDialogWinForms.Tree;
 using Bogus;
 using Bogus.DataSets;
 using Microsoft.VisualBasic.ApplicationServices;
@@ -189,6 +190,12 @@ namespace _14_CreateDialogWinForms
         private void productsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowProductsForm dlg = new ShowProductsForm();
+            dlg.ShowDialog();
+        }
+
+        private void myTreeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TreeForm dlg = new TreeForm();
             dlg.ShowDialog();
         }
     }
