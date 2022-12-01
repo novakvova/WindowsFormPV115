@@ -45,6 +45,7 @@
             this.tvProducts.Name = "tvProducts";
             this.tvProducts.Size = new System.Drawing.Size(303, 426);
             this.tvProducts.TabIndex = 0;
+            this.tvProducts.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvProducts_NodeMouseClick);
             // 
             // btnAdd
             // 

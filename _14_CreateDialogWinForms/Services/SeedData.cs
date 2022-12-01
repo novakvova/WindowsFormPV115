@@ -19,7 +19,7 @@ namespace _14_CreateDialogWinForms.Services
         public static void Init()
         {
             AppFormData formData = new AppFormData();
-            if(!formData.Users.Any())
+            if (!formData.Users.Any())
             {
                 var testOrders = new Faker<UserEntity>("uk")
                 //Ensure all properties have rules. By default, StrictMode is false
@@ -91,7 +91,7 @@ namespace _14_CreateDialogWinForms.Services
                     formData.Add(category);
                     formData.SaveChanges();
                 }
-                
+
             }
 
 
@@ -103,7 +103,7 @@ namespace _14_CreateDialogWinForms.Services
                     Description = "Дешево і сердито",
                     Price = 35251.45M
                 };
-              
+
 
                 string images = "";
                 for (int i = 0; i < 4; i++)
@@ -127,11 +127,55 @@ namespace _14_CreateDialogWinForms.Services
                             images += fileName + (i == 3 ? "" : " ");
                         }
                     }
-                
+
                 }
                 product.Images = images;
                 formData.Products.Add(product);
                 formData.SaveChanges();
+
+            }
+
+            if (!formData.Trees.Any())
+            {
+
+                var list = new List<TreeEntity>()
+                {
+                    new TreeEntity { Image="treelaptop", Name="Ноутбуки"},
+                    new TreeEntity { Image="treeofficesupplies", Name="Канцелярія" },
+                    new TreeEntity { Image="treehouseholdgoods", Name="Побутові товари" },
+                    new TreeEntity { Image="treegame", Name="Геймерські" },
+                    new TreeEntity { Image="treeoffice", Name="Офісні" }
+                };
+
+                int i = 1;
+                foreach (var treeitem in list)
+                {
+                    string url = $"https://loremflickr.com/1280/960/{treeitem.Image}";
+                    using (WebClient client = new WebClient())
+                    {
+                        using (Stream stream = client.OpenRead(url))
+                        {
+                            Bitmap bitmap;
+                            bitmap = new Bitmap(stream);
+                            string fileName = Path.GetRandomFileName() + ".jpg";
+                            string[] sizes = MyAppConfig.GetSectionValue("ImageSizes").Split(',');
+                            foreach (string size in sizes)
+                            {
+                                int width = int.Parse(size);
+                                var saveBMP = ImageWorker.CompressImage(bitmap, width, width, false);
+                                saveBMP.Save($"images/{size}_{fileName}", ImageFormat.Jpeg);
+                            }
+                            treeitem.Image = fileName;
+                        }
+                    }
+                    if (i > 3)
+                    {
+                        treeitem.ParentId = list[0].Id;
+                    }
+                    formData.Add(treeitem);
+                    formData.SaveChanges();
+                    i++;
+                }
 
             }
         }
