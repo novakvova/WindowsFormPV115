@@ -36,6 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbChild = new System.Windows.Forms.CheckBox();
             this.btnRemove = new System.Windows.Forms.Button();
+            this.btnEditAndSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -116,11 +117,22 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
+            // btnEditAndSave
+            // 
+            this.btnEditAndSave.Location = new System.Drawing.Point(692, 54);
+            this.btnEditAndSave.Name = "btnEditAndSave";
+            this.btnEditAndSave.Size = new System.Drawing.Size(96, 67);
+            this.btnEditAndSave.TabIndex = 7;
+            this.btnEditAndSave.Text = "Змінити";
+            this.btnEditAndSave.UseVisualStyleBackColor = true;
+            this.btnEditAndSave.Click += new System.EventHandler(this.btnEditAndSave_Click);
+            // 
             // TreeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnEditAndSave);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.cbChild);
             this.Controls.Add(this.pbImage);
@@ -148,5 +160,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cbChild;
         private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnEditAndSave;
     }
 }
